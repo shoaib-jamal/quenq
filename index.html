@@ -24,37 +24,48 @@
 <p class=tagline>Play Hard, Fake Harder</p>
 </div>
     <div class="ad-placeholder">
-      <iframe id="sandboxedIframe" width="468" height="60"></iframe>
- <script type="text/javascript">
-        // Get reference to the iframe
-        var iframe = document.getElementById('sandboxedIframe');
-        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-        // Write HTML content into the iframe
-        iframeDoc.open();
-        iframeDoc.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="UTF-8">
-            </head>
-            <body>
-                <script type="text/javascript">
-                    atOptions = {
-                        'key': '343a6d81b08f342b0b85ab130cfe4c34',
-                        'format': 'iframe',
-                        'height': 60,
-                        'width': 468,
-                        'params': {}
-                    };
-                </script>
-                <script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"></script>
-            </body>
-            </html>
-        `);
-        iframeDoc.close();
+    <script type="text/javascript">
+        // Configuration for the external script
+        var atOptions = {
+            'key': '343a6d81b08f342b0b85ab130cfe4c34',
+            'format': 'iframe',
+            'height': 60,
+            'width': 468,
+            'params': {}
+        };
     </script>
+    <script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"></script>
 
+    <script type="text/javascript">
+        // Function to handle iframe modification
+        function addSandboxToIframe() {
+            var iframes = document.querySelectorAll('iframe');
+            iframes.forEach(function(iframe) {
+                if (iframe.src.includes('acceleratetomb.com')) {
+                    iframe.sandbox.add('allow-same-origin');
+                    iframe.sandbox.add('allow-scripts');
+                }
+            });
+        }
+
+        // Observe changes in the DOM to detect when iframes are added
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length) {
+                    addSandboxToIframe();
+                }
+            });
+        });
+
+        // Start observing the document body for changes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        // Ensure iframes already added are handled
+        addSandboxToIframe();
+    </script>
     </div>
 </header>
 <div class=navbar>
