@@ -23,56 +23,15 @@
 <a href="/"><img src=quenq.png alt="Quenq Logo"></a>
 <p class=tagline>Play Hard, Fake Harder</p>
 </div>
-    <div class="ad-placeholder">
-
+<div class="ad-placeholder">
+<script type="text/javascript">var atOptions={key:"343a6d81b08f342b0b85ab130cfe4c34",format:"iframe",height:60,width:468,params:{}};</script>
 <script type="text/javascript">
-        // Configuration for the external script
-        var atOptions = {
-            'key': '343a6d81b08f342b0b85ab130cfe4c34',
-            'format': 'iframe',
-            'height': 60,
-            'width': 468,
-            'params': {}
-        };
-    </script>
-        <script type="text/javascript">
   if (window.innerWidth > 768) {
     document.write('<script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"><\/script>');
   }
 </script>
-  <script type="text/javascript">
-        // Function to apply sandbox attribute to iframes
-        function applySandboxToIframes() {
-            var iframes = document.querySelectorAll('iframe');
-            iframes.forEach(function(iframe) {
-                if (!iframe.hasAttribute('sandbox')) {
-                    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
-                }
-            });
-        }
-
-        // Create a MutationObserver to monitor iframe additions
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.tagName === 'IFRAME') {
-                        // Apply sandbox attribute to newly added iframe
-                        applySandboxToIframes();
-                    }
-                });
-            });
-        });
-
-        // Start observing the document body for added iframes
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
-        // Ensure any iframes already present are handled
-        applySandboxToIframes();
-    </script>
-    </div>
+<script type="text/javascript">function applySandboxToIframes(){document.querySelectorAll("iframe").forEach(function(o){o.hasAttribute("sandbox")||o.setAttribute("sandbox","allow-same-origin allow-scripts")})}var observer=new MutationObserver(function(o){o.forEach(function(o){o.addedNodes.forEach(function(o){"IFRAME"===o.tagName&&applySandboxToIframes()})})});observer.observe(document.body,{childList:!0,subtree:!0}),applySandboxToIframes();</script>
+</div>
 </header>
 <div class=navbar>
 <div class=joke onclick=getJoke()>🤪</div>
