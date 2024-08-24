@@ -25,34 +25,35 @@
 </div>
     <div class="ad-placeholder">
       <iframe id="sandboxedIframe" width="468" height="60"></iframe>
-<script type="text/javascript">
-    // Create and insert an HTML document into the iframe
-    var iframe = document.getElementById('sandboxedIframe');
-    var doc = iframe.contentDocument || iframe.contentWindow.document;
+ <script type="text/javascript">
+        // Get reference to the iframe
+        var iframe = document.getElementById('sandboxedIframe');
+        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-    doc.open();
-    doc.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-        </head>
-        <body>
-            <script type="text/javascript">
-                atOptions = {
-                    'key': '343a6d81b08f342b0b85ab130cfe4c34',
-                    'format': 'iframe',
-                    'height': 60,
-                    'width': 468,
-                    'params': {}
-                };
-            </script>
-            <script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"></script>
-        </body>
-        </html>
-    `);
-    doc.close();
-</script>
+        // Write HTML content into the iframe
+        iframeDoc.open();
+        iframeDoc.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+            </head>
+            <body>
+                <script type="text/javascript">
+                    atOptions = {
+                        'key': '343a6d81b08f342b0b85ab130cfe4c34',
+                        'format': 'iframe',
+                        'height': 60,
+                        'width': 468,
+                        'params': {}
+                    };
+                </script>
+                <script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"></script>
+            </body>
+            </html>
+        `);
+        iframeDoc.close();
+    </script>
 
     </div>
 </header>
