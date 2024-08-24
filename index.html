@@ -24,7 +24,7 @@
 <p class=tagline>Play Hard, Fake Harder</p>
 </div>
     <div class="ad-placeholder">
-    <script type="text/javascript">
+ <script type="text/javascript">
         // Configuration for the external script
         var atOptions = {
             'key': '343a6d81b08f342b0b85ab130cfe4c34',
@@ -37,34 +37,36 @@
     <script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"></script>
 
     <script type="text/javascript">
-        // Function to handle iframe modification
-        function addSandboxToIframe() {
+        // Function to apply sandbox attribute to iframes
+        function applySandboxToIframes() {
             var iframes = document.querySelectorAll('iframe');
             iframes.forEach(function(iframe) {
-                if (iframe.src.includes('acceleratetomb.com')) {
-                    iframe.sandbox.add('allow-same-origin');
-                    iframe.sandbox.add('allow-scripts');
+                if (!iframe.hasAttribute('sandbox')) {
+                    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
                 }
             });
         }
 
-        // Observe changes in the DOM to detect when iframes are added
+        // Create a MutationObserver to monitor iframe additions
         var observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
-                if (mutation.addedNodes.length) {
-                    addSandboxToIframe();
-                }
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.tagName === 'IFRAME') {
+                        // Apply sandbox attribute to newly added iframe
+                        applySandboxToIframes();
+                    }
+                });
             });
         });
 
-        // Start observing the document body for changes
+        // Start observing the document body for added iframes
         observer.observe(document.body, {
             childList: true,
             subtree: true
         });
 
-        // Ensure iframes already added are handled
-        addSandboxToIframe();
+        // Ensure any iframes already present are handled
+        applySandboxToIframes();
     </script>
     </div>
 </header>
