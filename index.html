@@ -24,70 +24,54 @@
 <p class=tagline>Play Hard, Fake Harder</p>
 </div>
     <div class="ad-placeholder">
-    <script type="text/javascript">
-        // Function to check if the device is mobile
-        function isMobile() {
-            return window.innerWidth <= 768; // Adjust this breakpoint as needed
-        }
-
-        // Function to load scripts if the device is not mobile
-        function loadScripts() {
-            if (!isMobile()) {
-                // Create and append the configuration script
-                var configScript = document.createElement('script');
-                configScript.type = 'text/javascript';
-                configScript.text = `
-                    var atOptions = {
-                        'key': '343a6d81b08f342b0b85ab130cfe4c34',
-                        'format': 'iframe',
-                        'height': 60,
-                        'width': 468,
-                        'params': {}
-                    };
-                `;
-                document.head.appendChild(configScript);
-
-                // Create and append the external script
-                var externalScript = document.createElement('script');
-                externalScript.type = 'text/javascript';
-                externalScript.src = '//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js';
-                document.head.appendChild(externalScript);
-
-                // Function to apply sandbox attribute to iframes
-                function applySandboxToIframes() {
-                    var iframes = document.querySelectorAll('iframe');
-                    iframes.forEach(function(iframe) {
-                        if (!iframe.hasAttribute('sandbox')) {
-                            iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
-                        }
-                    });
+ <script type="text/javascript">
+  if (window.innerWidth > 768) { // 768px is a common breakpoint for mobile devices
+    var script = document.createElement('script');
+    script.src = "//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js";
+    document.head.appendChild(script);
+  }
+</script>
+<script type="text/javascript">
+        // Configuration for the external script
+        var atOptions = {
+            'key': '343a6d81b08f342b0b85ab130cfe4c34',
+            'format': 'iframe',
+            'height': 60,
+            'width': 468,
+            'params': {}
+        };
+    </script>
+  <script type="text/javascript">
+        // Function to apply sandbox attribute to iframes
+        function applySandboxToIframes() {
+            var iframes = document.querySelectorAll('iframe');
+            iframes.forEach(function(iframe) {
+                if (!iframe.hasAttribute('sandbox')) {
+                    iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
                 }
-
-                // Create a MutationObserver to monitor iframe additions
-                var observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        mutation.addedNodes.forEach(function(node) {
-                            if (node.tagName === 'IFRAME') {
-                                // Apply sandbox attribute to newly added iframe
-                                applySandboxToIframes();
-                            }
-                        });
-                    });
-                });
-
-                // Start observing the document body for added iframes
-                observer.observe(document.body, {
-                    childList: true,
-                    subtree: true
-                });
-
-                // Ensure any iframes already present are handled
-                applySandboxToIframes();
-            }
+            });
         }
 
-        // Execute the loadScripts function when the document is ready
-        document.addEventListener('DOMContentLoaded', loadScripts);
+        // Create a MutationObserver to monitor iframe additions
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.tagName === 'IFRAME') {
+                        // Apply sandbox attribute to newly added iframe
+                        applySandboxToIframes();
+                    }
+                });
+            });
+        });
+
+        // Start observing the document body for added iframes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        // Ensure any iframes already present are handled
+        applySandboxToIframes();
     </script>
     </div>
 </header>
