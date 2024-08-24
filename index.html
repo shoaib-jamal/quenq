@@ -24,13 +24,13 @@
 <p class=tagline>Play Hard, Fake Harder</p>
 </div>
     <div class="ad-placeholder">
-  <script type="text/javascript">
+    <script type="text/javascript">
         // Function to check if the device is mobile
         function isMobile() {
-            return window.innerWidth <= 768; // Adjust this value if needed
+            return window.innerWidth <= 768; // Adjust this breakpoint as needed
         }
 
-        // Function to load the external script conditionally
+        // Function to load scripts if the device is not mobile
         function loadScripts() {
             if (!isMobile()) {
                 // Create and append the configuration script
@@ -86,7 +86,7 @@
             }
         }
 
-        // Load scripts when the document is ready
+        // Execute the loadScripts function when the document is ready
         document.addEventListener('DOMContentLoaded', loadScripts);
     </script>
     </div>
