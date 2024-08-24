@@ -25,15 +25,11 @@
 </div>
     <div class="ad-placeholder">
 <script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function() {
-    if (window.innerWidth > 768) { // Adjust the pixel value as needed
-      var script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = "//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js";
-      document.head.appendChild(script);
-    }
-  });
+  if (window.innerWidth > 768) {
+    document.write('<script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"><\/script>');
+  }
 </script>
+
 
 <script type="text/javascript">
         // Configuration for the external script
