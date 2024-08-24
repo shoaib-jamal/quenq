@@ -25,10 +25,20 @@
 </div>
     <div class="ad-placeholder">
 <script type="text/javascript">
-  if (window.innerWidth > 768) {
-    document.write('<script type="text/javascript" src="//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js"><\/script>');
-  }
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("Window width:", window.innerWidth);
+    if (window.innerWidth > 768) {
+      console.log("Loading script for non-mobile device");
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = "//acceleratetomb.com/343a6d81b08f342b0b85ab130cfe4c34/invoke.js";
+      document.head.appendChild(script);
+    } else {
+      console.log("Not loading script for mobile device");
+    }
+  });
 </script>
+
 
 
 <script type="text/javascript">
