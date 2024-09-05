@@ -12,26 +12,194 @@
 <link rel=preconnect href=https://fonts.googleapis.com>
 <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel=stylesheet>
-<style>.grid-item:hover a,body{color:#fff}.grid-item a,.navbar,body,header{display:flex}.grid-item h3,footer{color:#fff;padding:10px;text-align:center}.grid-container,footer,header{box-sizing:border-box}body{font-family:Quicksand,sans-serif;margin:0;padding:0;flex-direction:column;min-height:100vh;background-image:url("background.jpg");background-size:cover;background-position:center;overflow-x:hidden}a:hover{cursor:url("hover.cur"),auto}header{flex-wrap:wrap;align-items:center;background-color:rgba(0,0,0,.7);padding:20px;width:100%}.logo-container{display:flex;flex-direction:column;align-items:flex-start}.logo-container img{height:50px;margin-bottom:10px}.tagline{margin:0;font-size:1.2em}.ad-placeholder{width:468px;height:60px;justify-content:center;align-items:center;color:#000;font-size:1em;margin-left:auto}.navbar{justify-content:space-between;align-items:center;padding:10px 20px;background-color:rgba(0,0,0,.9);position:-webkit-sticky;position:sticky;top:0;z-index:1000}.grid-item a::after,footer{background-color:rgba(0,0,0,.7)}.joke{flex:1;margin-right:20px;max-width:600px}.navlinks{flex:0 0 auto}#categories-container{flex-grow:1}.ad-container,.category-container{padding:20px;background-color:rgba(0,0,0,.7);margin:20px;border-radius:10px}.grid-container{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:20px;flex-grow:1}@media (max-width:599px){.grid-container{grid-template-columns:repeat(1,1fr)}}@media (min-width:600px) and (max-width:999px){.grid-container{grid-template-columns:repeat(2,1fr)}}.grid-item{position:relative;overflow:hidden;border:1px solid #ccc;border-radius:10px;transition:transform .3s;background-color:rgba(0,0,0,.8);height:300px}.grid-item img{width:100%;height:80%;object-fit:cover;border-radius:10px 10px 0 0;object-position:bottom left}.grid-item h3{margin:0;border-radius:0 0 10px 10px;height:20%}.grid-item:hover{transform:scale(1.05)}.grid-item a{position:absolute;top:0;left:0;right:0;bottom:0;justify-content:center;align-items:center;text-decoration:none;color:transparent}.grid-item a::after{content:"Launch";padding:5px 10px;border-radius:5px;transition:opacity .3s;opacity:0}.grid-item:hover a::after{opacity:1}footer{font-size:.8em;margin-top:auto}{.ad-placeholder{width:100%;height:auto;margin-left:0;margin-top:10px}}
+<link rel="stylesheet" href="/styles.css">
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+        background-color: #000;
+        color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #fff; /* White border added */
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+    }
+
+    .close {
+        color: #fff;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #aaa;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button-85 {
+        padding: 0.6em 2em;
+		font-family:Quicksand,sans-serif;
+        border: none;
+        outline: none;
+        color: rgb(255, 255, 255);
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .button-85:before {
+        content: "";
+        background: linear-gradient(
+            45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000
+        );
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-button-85 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing-button-85 {
+        0% {
+            background-position: 0 0;
+        }
+        50% {
+            background-position: 400% 0;
+        }
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .button-85:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #222;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T854EV4C7D"></script>
 <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-T854EV4C7D")</script>
 </head>
 <body>
+<div id="promoModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2><a href="https://phantom.quenq.com" target="_blank" style="text-decoration: none; color: white;">Introducing Phantom!</a></h2>
+<p>Quenq has launched a new service, <strong><a href="https://phantom.quenq.com" target="_blank" style="text-decoration: none; color: white;">Phantom Unblocker</a></strong>, an ultra-fast proxy designed to help you bypass internet restrictions effortlessly. With over 200+ games, customizable themes, cloaking, and a panic key for added security, Phantom is your ultimate tool for unblocking websites and having fun while staying safe online.</p>
+<button class="button-85" id="visitNowBtn" role="button">Visit Now</button>
+
+    </div>
+</div>
 <header>
 <div class=logo-container>
 <a href="/"><img src=quenq.png alt="Quenq Logo"></a>
 <p class=tagline>Play Hard, Fake Harder</p>
 </div>
-<!--<div class="ad-placeholder">
-</div>-->
-</header>
-<div class=navbar>
-<div class=joke onclick=getJoke()>🤪</div>
-<script>async function getJoke(){try{const e=await fetch("https://official-joke-api.appspot.com/random_joke"),t=await e.json();document.querySelector(".joke").innerHTML=`${t.setup} ${t.punchline}`}catch(e){document.querySelector(".joke").innerHTML="Failed to fetch a joke. Please try again later."}}getJoke()</script>
-<div class=navlinks>
-<a href=https://discord.com/invite/9dFx9kKQS6><img src=discord.png width=120px style=vertical-align:bottom></a>
+<div class="ad-placeholder">
+<a href="https://phantom.quenq.com" target="_blank"><img src="phantom.gif"></a>
 </div>
+</header>
+<div class="navbar">
+  <div class="navlinks">
+    <a href="/"><b>🏠 Home</b></a>
+    <a href="/chat">💬 Chat</a>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">💻 Simulators &#x25BE;</a>
+      <div class="dropdown-content">
+        <a href="https://xp.quenq.com">RebornXP</a>
+        <a href="/hacker">Hacker Simulator</a>
+        <a href="/bios">BIOS Simulator</a>
+        <a href="/jurassic-park">Jurassic Park</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">🤡 Pranks &#x25BE;</a>
+      <div class="dropdown-content">
+        <a href="/updates">Fake Update Screens</a>
+        <a href="/cracked">Cracked Screen</a>
+        <a href="/fake-virus">Fake Virus</a>
+        <a href="/fbi-lock">FBI Lock</a>
+        <a href="/nsfw">Rickroller</a>
+        <a href="/boot">Disk Formatter</a>
+        <a href="/tv-noise">Old TV Noise</a>
+        <a href="/dvd">DVD Logo</a>
+        <a href="/updates/win10/bsod.html">Blue Screen</a>
+        <a href="/matrix">Matrix Rain</a>
+        <a href="/pipes">3D Pipes</a>
+        <a href="/gta-v">GTA V Loading Screen</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">📱 Mockers &#x25BE;</a>
+      <div class="dropdown-content">
+        <a href="/fake-tweet">Fake Tweet Generator</a>
+        <a href="/meme-maker">Meme Generator</a>
+        <a href="/fake-social">Fake Social Mocker</a>
+        <a href="/fake-subtitles">Fake Subtitle Generator</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">⛏️ Miscellaneous &#x25BE;</a>
+      <div class="dropdown-content">
+        <a href="https://phantom.quenq.com">Proxy Unblocker</a>
+        <a href="https://weani.me">Temporary File Sharing</a>
+		<a href="/sitemap">Sitemap</a>
+      </div>
+    </div>
+
+    <a href="https://discord.com/invite/9dFx9kKQS6" class="discord-link">
+      <img src="discord.png" width="120px" alt="Discord Invite">
+    </a>
+  </div>
 </div>
 <div id=categories-container></div>
 <!--<div class=ad-container>
@@ -48,10 +216,67 @@
 </footer>
 <script>const pranks=[{title:"RebornXP",image:"rxp.jpg",link:"https://xp.quenq.com",category:"Simulators"},{title:"Hacker Simulator",image:"hacker/hacker.png",link:"/hacker",category:"Simulators"},{title:"BIOS Simulator",image:"bios/bios.png",link:"/bios",category:"Simulators"},{title:"Jurassic Park",image:"jurassic-park/og.jpg",link:"/jurassic-park",category:"Simulators"},{title:"Fake Update Screens",image:"updates/updates.jpg",link:"/updates",category:"Pranks"},{title:"Cracked Screen",image:"cracked/elCrackinScreen.jpg",link:"/cracked",category:"Pranks"},{title:"Fake Virus",image:"fake-virus/og.jpg",link:"/fake-virus",category:"Pranks"},{title:"FBI Lock",image:"fbi-lock/og.png",link:"/fbi-lock",category:"Pranks"},{title:"Rickroller",image:"nsfw/og.gif",link:"/nsfw",category:"Pranks"},{title:"Disk Formatter",image:"boot/format.png",link:"/boot",category:"Pranks"},{title:"Old TV Noise",image:"tv-noise/og.jpg",link:"/tv-noise",category:"Pranks"},{title:"DVD Logo",image:"dvd/og.jpg",link:"/dvd",category:"Pranks"},{title:"Blue Screen",image:"updates/bsod.png",link:"/updates/win10/bsod.html",category:"Pranks"},{title:"Matrix Rain",image:"matrix/og.png",link:"/matrix",category:"Pranks"},{title:"3D Pipes",image:"pipes/og.jpg",link:"/pipes",category:"Pranks"},{title:"Fake Tweet Generator",image:"fake-tweet/og.jpg",link:"/fake-tweet",category:"Mockers"},{title:"Meme Generator",image:"meme-maker/og.jpeg",link:"/meme-maker",category:"Mockers"},{title:"Fake Social Mocker",image:"fake-social/banner.jpg",link:"/fake-social",category:"Mockers"},{title:"Fake Subtitle Generator",image:"fake-subtitles/og.jpg",link:"/fake-subtitles",category:"Mockers"},{title:"GTA V Loading Screen",image:"gta-v/og.jpg",link:"/gta-v",category:"Pranks"}],categoriesContainer=document.getElementById("categories-container");function renderPranks(){categoriesContainer.innerHTML="";const e=pranks.reduce(((e,a)=>(e[a.category]||(e[a.category]=[]),e[a.category].push(a),e)),{});Object.keys(e).forEach((a=>{const t=document.createElement("div");t.className="category-container",t.innerHTML=`\n      <h2>${a}</h2>\n      <div class="grid-container" id="grid-container-${a}"></div>\n    `,categoriesContainer.appendChild(t);const i=t.querySelector(".grid-container");e[a].forEach((e=>{const a=document.createElement("div");a.className="grid-item",a.innerHTML=`\n        <img src="${e.image}" alt="${e.title}">\n        <h3>${e.title}</h3>\n        <a href="${e.link}" target="_blank"></a>\n      `,i.appendChild(a)}))}))}renderPranks()</script>
 <script>const cursors=["cursor1.cur","cursor2.cur","cursor3.cur","cursor4.cur","cursor5.cur"],randomCursor=cursors[Math.floor(Math.random()*cursors.length)];document.body.style.cursor=`url('${randomCursor}'), auto`</script>
-<script type="text/javascript">
-var infolinks_pid = 3424648;
-var infolinks_wsid = 0;
+<script>
+    // Check if the modal has been shown before using a cookie
+    function getCookie(name) {
+        let matches = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return matches ? decodeURIComponent(matches[1]) : null;
+    }
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    window.onload = function() {
+        if (!getCookie('promoModalShown')) {
+            let modal = document.getElementById("promoModal");
+            let closeBtn = document.getElementsByClassName("close")[0];
+            let visitNowBtn = document.getElementById("visitNowBtn");
+
+            // Show the modal
+            modal.style.display = "block";
+
+            // When the user clicks on the close button, close the modal
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+                setCookie('promoModalShown', 'true', 2); // Set a cookie to not show the modal again for 3 days
+            }
+
+            // When the user clicks on the visit now button, open Weani.me in a new tab and close the modal
+            visitNowBtn.onclick = function() {
+                window.open("https://phantom.quenq.com", "_blank");
+                
+                setCookie('promoModalShown', 'true', 2); // Set a cookie to not show the modal again for 3 days
+            }
+        }
+    }
 </script>
-<script type="text/javascript" src="http://resources.infolinks.com/js/infolinks_main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+
+      toggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        dropdown.classList.toggle('show');
+      });
+
+      // Close dropdown if clicked outside
+      document.addEventListener('click', function(event) {
+        if (!dropdown.contains(event.target) && !toggle.contains(event.target)) {
+          dropdown.classList.remove('show');
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
