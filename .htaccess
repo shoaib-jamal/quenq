@@ -1,9 +1,0 @@
-RewriteEngine On
-
-# Redirect non-www to www
-RewriteCond %{HTTP_HOST} ^quenq\.com [NC]
-RewriteRule ^(.*)$ https://www.quenq.com/$1 [L,R=301]
-
-# Redirect index.html to /
-RewriteCond %{THE_REQUEST} /index\.html [NC]
-RewriteRule ^index\.html$ https://www.quenq.com/ [L,R=301]
