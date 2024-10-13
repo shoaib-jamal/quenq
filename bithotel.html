@@ -3,8 +3,8 @@
 <head>
 <meta charset=UTF-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="The ultimate hub for hilarious online pranks and fun stuff! Fool your friends with fake updates, fake virus alerts, and more. Play hard, fake harder with Quenq!">
-<title>Quenq - Discord Chat</title>
+<meta name=description content="A pixel based mmo-hotel and a multiplayer social environment.">
+<title>The BitHotel - Quenq</title>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
@@ -30,7 +30,7 @@
 <div class="navbar">
   <div class="navlinks">
     <a href="/">🏠 Home</a>
-    <a href="/chat"><b>💬 Chat</b></a>
+    <a href="/bithotel"><b>🏨 BitHotel</b></a>
 
     <div class="dropdown">
       <a href="#" class="dropdown-toggle">💻 Simulators &#x25BE;</a>
@@ -86,13 +86,22 @@
 </div>
 
 <div class=ad-container>
-<widgetbot
-    server="1210926563596705882"
-    channel="1210926564313669646"
-    width="100%"
-    height="600"
-></widgetbot>
-<script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+    <iframe 
+        src="https://bithotel.quenq.com" 
+        style="width: 100%; height: 100vh; border: none; border-radius: 15px; overflow: hidden; display: block;" 
+        id="myIframe"
+    ></iframe>
+    <p style="text-align: center;">Having problems? <a href="https://bithotel.quenq.com" target="_blank">Click here to play BitHotel in a new tab</a></p>
+
+    <script>
+        function resizeIframe() {
+            const iframe = document.getElementById('myIframe');
+            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+        }
+
+        window.onload = resizeIframe; // Adjust on load
+        window.onresize = resizeIframe; // Adjust on resize
+    </script>
 </div>
 <footer>
 <p>Disclaimer: These simulators and pranks are for entertainment purposes only. All content and logos belong to their respective owners. Use these resources responsibly. Quenq.com is not liable for any damages.</p>
